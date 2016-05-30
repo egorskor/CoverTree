@@ -1,22 +1,29 @@
 #pragma once
-
+#include <vector>
+using namespace std;
 class Object
 {
-	double x;
-	double y;
+	/*double x;
+	double y;*/
+	int dimension;
+	vector<long long> coordinateVector;
 public:
-	Object(double _value, double _value2)
+	Object(vector<long long>* _coordinateVector)
 	{
-		x = _value;
-		y = _value2;
+		coordinateVector = *_coordinateVector;
+		dimension = _coordinateVector->size();
 	}
-
-	double get_x() const
+	Object(vector<long long> _coordinateVector)
 	{
-		return x;
+		coordinateVector = _coordinateVector;
+		dimension = _coordinateVector.size();
 	}
-	double get_y() const
+	int get_dimension() const
 	{
-		return y;
+		return dimension;
+	}
+	vector<long long> get_coordinateVector() const
+	{
+		return coordinateVector;
 	}
 };

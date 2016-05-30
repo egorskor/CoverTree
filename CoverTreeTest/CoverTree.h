@@ -6,8 +6,8 @@
 #include <vector>
 
 
-const double MAX_LEVEL = 20;//ceilf(log(RAND_MAX)/log(2.0));
-double MIN_LEVEL = MAX_LEVEL - 1;//ceilf(log(1/1024) / log(2.0));
+//ceilf(log(RAND_MAX)/log(2.0));
+//ceilf(log(1/1024) / log(2.0));
 using namespace std;
 template <typename dist_t>
 class CoverTreeMethod
@@ -55,9 +55,13 @@ private:
 	};//CoverTreeNode
 	CoverTreeNode* root;
 public:
-	CoverTreeMethod(Space<dist_t>* space,
+	 int MAX_LEVEL;
+	int MIN_LEVEL;
+	CoverTreeMethod(long long _max_dist, Space<dist_t>* space,
 		const vector<Object*> data)
 	{
+		MAX_LEVEL = ceilf(log(_max_dist) / log(2.0));
+		MIN_LEVEL = MAX_LEVEL - 1;
 		if (root == NULL)
 		{
 			root = new CoverTreeNode(data[0]);
